@@ -2,8 +2,8 @@ package juegoDeCartas;
 
 import utiles.Menu;
 import utiles.Teclado;
-import juegoDeCartas.exceptions.ListaVaciaException;
-import utiles.Continuar;
+import juegoDeCartas.exceptions.*;
+
 /**
  * @author Alberto Perez Cano
  * @version 1.0
@@ -12,6 +12,7 @@ public class JugarJuego {
 	
 	private static Menu menuPrincipal, menuJugadores;
 	private static ListaJugadores listaJugadores = new ListaJugadores();
+	private static Partida partida;
 	
 	/**
 	 * @param args
@@ -29,7 +30,7 @@ public class JugarJuego {
 				jugar();
 				break;
 			case 3:
-				//ranking();
+				ranking();
 				break;
 			default:
 				System.out.println("Has salido del programa");
@@ -38,16 +39,29 @@ public class JugarJuego {
 		}while(true);
 		
 	}
-
+	
+	/**
+	 * Muestra un ranking
+	 */
+	private static void ranking() {
+		listaJugadores.ranking();
+	}
+	
+	/**
+	 * Inicia la partida
+	 */
 	private static void jugar() {
-		Partida partida = new Partida(Teclado.leerEntero("¿Cuantos jugadores van a participar?"));
+		partida = new Partida();
 		try {
-			partida.seleccionarJugadores();
-		} catch (ListaVaciaException e) {
+			partida.jugar(listaJugadores);
+		} catch (BarajaVaciaException e) {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Gestiona el menu de opciones de los jugadores
+	 */
 	private static void menujugadores() {
 		menuJugadores = new Menu("Gestión de jugadores", new String[] {"Crear Jugador", "Borrar Jugador", "Mostrar lista de jugadores"});
 		
@@ -68,7 +82,10 @@ public class JugarJuego {
 		} while (true);
 		
 	}
-
+	
+	/**
+	 * Muestra la lista de jugadores
+	 */
 	private static void showJugadores() {
 		try {
 			listaJugadores.show();
@@ -76,7 +93,10 @@ public class JugarJuego {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Borra jugador
+	 */
 	private static void delJugador() {
 		try {
 			listaJugadores.delJugador(Teclado.leerEntero("Introduzca el ID del jugador que quiere borrar: "));
@@ -84,7 +104,10 @@ public class JugarJuego {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Añade jugador
+	 */
 	private static void addJugador() {
 		listaJugadores.addJugador(Teclado.leerCadena("Introduzca el nombre del jugador: "));
 	}

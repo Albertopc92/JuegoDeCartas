@@ -1,6 +1,7 @@
 package juegoDeCartas;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import juegoDeCartas.exceptions.ListaVaciaException;
 
@@ -8,7 +9,7 @@ import juegoDeCartas.exceptions.ListaVaciaException;
  * @author Alberto Perez Cano
  * @version 1.0
  */
-public class ListaJugadores {
+public class ListaJugadores{
 	
 	ArrayList<Jugador> listaJugadores;
 	
@@ -16,6 +17,18 @@ public class ListaJugadores {
 		listaJugadores = new ArrayList<Jugador>();
 	}
 	
+	Jugador getJugador(int id) {
+		return listaJugadores.get(id-1);
+	}
+	
+	@Override
+	public String toString() {
+		for (Jugador jugador : listaJugadores) {
+			System.out.println(jugador);
+		}
+		return "";
+	}
+
 	/**
 	 * Añade un jugador a la lista
 	 * @param nombre
@@ -67,4 +80,16 @@ public class ListaJugadores {
 			return false;
 		return true;
 	}
+	
+	/**
+	 * Muestra el ranking segun partidas ganadas
+	 */
+	public void ranking() {
+		Collections.sort(listaJugadores);
+		
+		for (Jugador jugador : listaJugadores) {
+			System.out.println(jugador);
+		}
+	}
+
 }

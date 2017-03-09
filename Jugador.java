@@ -4,7 +4,7 @@ package juegoDeCartas;
  * @author Alberto Perez Cano
  * @version 1.0
  */
-public class Jugador {
+public class Jugador implements Comparable<Jugador>{
 	
 	private String nombre;
 	private int pJugadas, pGanadas, idJugador;
@@ -59,13 +59,26 @@ public class Jugador {
 		this.puntuacion = puntuacion;
 	}
 	
+	/**
+	 * Incrementa las partidas jugadas
+	 */
+	public void incPJugadas() {
+		setpJugadas(pJugadas + 1);
+	}
+	
+	/**
+	 * Incrementa las partidas ganadas
+	 */
+	public void incPGanadas() {
+		setpGanadas(pGanadas + 1);
+	}
+	
 	@Override
 	public String toString() {
 		return 	getIdJugador() 
 				+ " - " + getNombre() 
 				+ " / PJ: " + getpJugadas() 
-				+ " / PG: " + getpGanadas() 
-				+ " / Puntuacion: " + getPuntuacion();
+				+ " / PG: " + getpGanadas();
 	}
 
 	/* (non-Javadoc)
@@ -98,5 +111,12 @@ public class Jugador {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public int compareTo(Jugador jugador) {
+		int comparepg = ((Jugador)jugador).getpGanadas();
+		return comparepg-this.pGanadas;
+	}
+	
 	
 }
