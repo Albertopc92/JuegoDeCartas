@@ -30,8 +30,8 @@ public class Partida {
 		System.out.println(listaJugadores.toString());
 		do {
 			id = Teclado.leerEntero("Indica el ID del jugador a participar");
-			participantes.add(listaJugadores.getJugador(id));
-			participantes.get(id-1).incPJugadas();
+			participantes.add(listaJugadores.getJugador(id)); // añade un jugador a la lista de jugadores participantes
+			participantes.get(participantes.indexOf(listaJugadores.getJugador(id))).incPJugadas(); // Obtiene el jugador de la lista de participantes al que se le van a incrementar las partidas
 		}while(Continuar.continuar("¿Desea añadir otro jugador?"));
 		
 		for (Jugador jugador : participantes) {
@@ -65,7 +65,7 @@ public class Partida {
 			carta = baraja.sacarCarta();
 			puntuacion += carta.getValor();
 			System.out.println("Puntos acumulados: " + puntuacion);
-			if(comprobarPuntuacion(puntuacion) == false) {
+			if(comprobarPuntuacion(puntuacion)) {
 				break;
 			}
 		}while(Continuar.continuar("¿Quieres otra carta?"));
