@@ -82,6 +82,13 @@ public class ListaJugadores{
 	}
 	
 	/**
+	 * Tamaño de la lista
+	 * @return int
+	 */
+	int size() {
+		return listaJugadores.size();
+	}
+	/**
 	 * Muestra el ranking segun partidas ganadas
 	 */
 	public void ranking() {

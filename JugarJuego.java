@@ -3,6 +3,7 @@ package juegoDeCartas;
 import utiles.Menu;
 import utiles.Teclado;
 import juegoDeCartas.exceptions.*;
+import listadoEstructurasDeDatos3.TopMusic.PosicionNoValidaException;
 
 /**
  * @author Alberto Perez Cano
@@ -53,8 +54,10 @@ public class JugarJuego {
 	private static void jugar() {
 		partida = new Partida();
 		try {
-			partida.jugar(listaJugadores);
+			partida.jugar(listaJugadores, Teclado.leerEntero("¿Cuantos jugadores van a participar?"));
 		} catch (BarajaVaciaException e) {
+			System.out.println(e.getMessage());
+		} catch (PosicionNoValidaException e) {
 			System.out.println(e.getMessage());
 		}
 	}

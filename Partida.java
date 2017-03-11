@@ -2,6 +2,7 @@ package juegoDeCartas;
 
 import java.util.ArrayList;
 import juegoDeCartas.exceptions.BarajaVaciaException;
+import listadoEstructurasDeDatos3.TopMusic.PosicionNoValidaException;
 import utiles.Continuar;
 import utiles.Teclado;
 
@@ -24,15 +25,19 @@ public class Partida {
 	 * @param listaJugadores
 	 * 						lista de jugadores que pueden participar
 	 * @throws BarajaVaciaException
+	 * @throws PosicionNoValidaException 
 	 */
-	void jugar(ListaJugadores listaJugadores) throws BarajaVaciaException {
+	void jugar(ListaJugadores listaJugadores, int numJugadores) throws BarajaVaciaException, PosicionNoValidaException {
 		int id;
 		System.out.println(listaJugadores.toString());
-		do {
+		
+		for(int i = 0; i < numJugadores; i++) {
 			id = Teclado.leerEntero("Indica el ID del jugador a participar");
+			if(id > listaJugadores.size() || id < 1)
+				throw new PosicionNoValidaException("ID no valido");
 			participantes.add(listaJugadores.getJugador(id)); // añade un jugador a la lista de jugadores participantes
 			participantes.get(participantes.indexOf(listaJugadores.getJugador(id))).incPJugadas(); // Obtiene el jugador de la lista de participantes al que se le van a incrementar las partidas
-		}while(Continuar.continuar("¿Desea añadir otro jugador?"));
+		}
 		
 		for (Jugador jugador : participantes) {
 			turno(jugador);
@@ -65,29 +70,19 @@ public class Partida {
 			carta = baraja.sacarCarta();
 			puntuacion += carta.getValor();
 			System.out.println("Puntos acumulados: " + puntuacion);
-			if(comprobarPuntuacion(puntuacion)) {
+			
+			if(puntuacion > 7.5) {
+				System.out.println("Has perdido =(");
+				break;
+			}else if(puntuacion == 7.5) {
+				System.out.println("Has ganadao =)");
 				break;
 			}
+			
 		}while(Continuar.continuar("¿Quieres otra carta?"));
 		
 		System.out.println("Tu turno ha concluido con: " + puntuacion + " puntos");
 		jugador.setPuntuacion(puntuacion);
 	}
-	
-	/**
-	 * Comprueba la puntuacion del jugador
-	 * @param puntuacion
-	 * 					Puntos del jugador
-	 * @return
-	 */
-	private boolean comprobarPuntuacion(double puntuacion) {
-		if(puntuacion > 7.5) {
-			System.out.println("Te has pasado =(");
-			return false;
-		}else if(puntuacion == 7.5) {
-			System.out.println("Has ganado =)");
-			return true;
-		}
-			return true;
-	}
+
 }
