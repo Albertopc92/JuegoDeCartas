@@ -75,8 +75,7 @@ public class Jugador implements Comparable<Jugador>{
 	
 	@Override
 	public String toString() {
-		return 	getIdJugador() 
-				+ " - " + getNombre() 
+		return 	getNombre() 
 				+ " / PJ: " + getpJugadas() 
 				+ " / PG: " + getpGanadas();
 	}

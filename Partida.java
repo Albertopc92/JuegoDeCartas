@@ -31,9 +31,9 @@ public class Partida {
 		System.out.println(listaJugadores.toString());
 		
 		for(int i = 0; i < numJugadores; i++) {
-			id = Teclado.leerEntero("Indica el ID del jugador a participar");
+			id = Teclado.leerEntero("Indica la posicion del jugador a participar");
 			if(id > listaJugadores.size() || id < 1)
-				throw new PosicionNoValidaException("ID no valido");
+				throw new PosicionNoValidaException("Posicion no valida");
 			participantes.add(listaJugadores.getJugador(id)); // añade un jugador a la lista de jugadores participantes
 			participantes.get(participantes.indexOf(listaJugadores.getJugador(id))).incPJugadas(); // Obtiene el jugador de la lista de participantes al que se le van a incrementar las partidas
 		}
@@ -50,7 +50,6 @@ public class Partida {
 	 * @param jugador
 	 */
 	private void esGanador() {
-		//TODO
 		int puntuacion = 0;
 		int posicion = 0;
 		Jugador ganador = null;

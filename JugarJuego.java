@@ -97,7 +97,9 @@ public class JugarJuego {
 	 *Añade jugador
 	 */
 	private static void addJugador() {
-		listaJugadores.addJugador(Teclado.leerCadena("Introduzca el nombre del jugador: "));
+		int numJugadores = Teclado.leerEntero("¿Cuantos jugadores quieres crear?");
+		for(int i = 0; i < numJugadores; i++)
+			listaJugadores.addJugador(Teclado.leerCadena("Introduzca el nombre del jugador: "));
 	}
 
 }
