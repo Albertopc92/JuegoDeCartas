@@ -40,17 +40,35 @@ public class Partida {
 		
 		for (Jugador jugador : participantes) {
 			turno(jugador);
-			esGanador(jugador);
 		}
+		
+		esGanador();
 	}
 	
 	/**
 	 * Incrementa las partidas ganadas a un jugador si es ganador de una partida
 	 * @param jugador
 	 */
-	private void esGanador(Jugador jugador) {
-		if(jugador.getPuntuacion() == 7.5)
-			jugador.incPGanadas();
+	private void esGanador() {
+		//TODO
+		int puntuacion = 0;
+		int posicion = 0;
+		Jugador ganador = null;
+		for (Jugador jug : participantes) {
+			if(jug.getPuntuacion() == 7.5){
+				ganador = participantes.get(posicion);
+				break;
+			}
+			
+			if(jug.getPuntuacion() > puntuacion && jug.getPuntuacion() < 7.5){
+				puntuacion = (int)jug.getPuntuacion();
+				ganador = participantes.get(posicion);
+			}
+	
+			posicion++;	
+		}
+		
+		ganador.incPGanadas();
 	}
 
 	/**
@@ -68,7 +86,7 @@ public class Partida {
 		do {
 			carta = baraja.sacarCarta();
 			puntuacion += carta.getValor();
-			System.out.println("Puntos acumulados: " + puntuacion);
+			System.out.println(carta + "\nPuntos acumulados: " + puntuacion);
 			
 			if(puntuacion > 7.5) {
 				System.out.println("Has perdido =(");

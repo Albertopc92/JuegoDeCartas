@@ -63,14 +63,14 @@ public class Jugador implements Comparable<Jugador>{
 	 * Incrementa las partidas jugadas
 	 */
 	public void incPJugadas() {
-		setpJugadas(pJugadas + 1);
+		setpJugadas(getpJugadas() + 1);
 	}
 	
 	/**
 	 * Incrementa las partidas ganadas
 	 */
 	public void incPGanadas() {
-		setpGanadas(pGanadas + 1);
+		setpGanadas(getpGanadas() + 1);
 	}
 	
 	@Override

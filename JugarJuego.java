@@ -65,7 +65,7 @@ public class JugarJuego {
 	 * Gestiona el menu de opciones de los jugadores
 	 */
 	private static void menujugadores() {
-		menuJugadores = new Menu("Gestión de jugadores", new String[] {"Crear Jugador", "Borrar Jugador", "Mostrar lista de jugadores"});
+		menuJugadores = new Menu("Gestión de jugadores", new String[] {"Crear Jugador", "Mostrar lista de jugadores"});
 		
 		do {
 			switch (menuJugadores.gestionar()) {
@@ -73,9 +73,6 @@ public class JugarJuego {
 				addJugador();
 				break;
 			case 2:
-				delJugador();
-				break;
-			case 3:
 				showJugadores();
 				break;
 			default:
@@ -97,18 +94,7 @@ public class JugarJuego {
 	}
 	
 	/**
-	 * Borra jugador
-	 */
-	private static void delJugador() {
-		try {
-			listaJugadores.delJugador(Teclado.leerEntero("Introduzca el ID del jugador que quiere borrar: "));
-		} catch (ListaVaciaException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-	
-	/**
-	 * Añade jugador
+	 *A�ade jugador
 	 */
 	private static void addJugador() {
 		listaJugadores.addJugador(Teclado.leerCadena("Introduzca el nombre del jugador: "));

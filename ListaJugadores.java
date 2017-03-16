@@ -88,6 +88,19 @@ public class ListaJugadores{
 	int size() {
 		return listaJugadores.size();
 	}
+	
+	/**
+	 * Devuelve un jugador proporcionando su index
+	 * @param index
+	 * @return
+	 */
+	Jugador get(int index){
+		return listaJugadores.get(index);
+	}
+	
+	int indexOf(Jugador jugador){
+		return listaJugadores.indexOf(jugador);
+	}
 	/**
 	 * Muestra el ranking segun partidas ganadas
 	 */
