@@ -1,8 +1,7 @@
 package juegoDeCartas;
 
 import java.util.ArrayList;
-import juegoDeCartas.exceptions.BarajaVaciaException;
-import listadoEstructurasDeDatos3.TopMusic.PosicionNoValidaException;
+import juegoDeCartas.exceptions.*;
 import utiles.Continuar;
 import utiles.Teclado;
 
@@ -35,7 +34,7 @@ public class Partida {
 			id = Teclado.leerEntero("Indica el ID del jugador a participar");
 			if(id > listaJugadores.size() || id < 1)
 				throw new PosicionNoValidaException("ID no valido");
-			participantes.add(listaJugadores.getJugador(id)); // aÃ±ade un jugador a la lista de jugadores participantes
+			participantes.add(listaJugadores.getJugador(id)); // añade un jugador a la lista de jugadores participantes
 			participantes.get(participantes.indexOf(listaJugadores.getJugador(id))).incPJugadas(); // Obtiene el jugador de la lista de participantes al que se le van a incrementar las partidas
 		}
 		
@@ -75,11 +74,11 @@ public class Partida {
 				System.out.println("Has perdido =(");
 				break;
 			}else if(puntuacion == 7.5) {
-				System.out.println("Has ganadao =)");
+				System.out.println("Has ganado =)");
 				break;
 			}
 			
-		}while(Continuar.continuar("Â¿Quieres otra carta?"));
+		}while(Continuar.continuar("¿Quieres otra carta?"));
 		
 		System.out.println("Tu turno ha concluido con: " + puntuacion + " puntos");
 		jugador.setPuntuacion(puntuacion);
