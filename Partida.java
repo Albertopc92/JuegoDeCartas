@@ -42,14 +42,14 @@ public class Partida {
 			turno(jugador);
 		}
 		
-		esGanador();
+		ganador();
 	}
 	
 	/**
 	 * Incrementa las partidas ganadas a un jugador si es ganador de una partida
 	 * @param jugador
 	 */
-	private void esGanador() {
+	private void ganador() {
 		int puntuacion = 0;
 		int posicion = 0;
 		Jugador ganador = null;
@@ -68,6 +68,8 @@ public class Partida {
 		}
 		
 		ganador.incPGanadas();
+		
+		System.out.println("El ganador es " + ganador.getNombre());
 	}
 
 	/**
